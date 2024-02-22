@@ -1,0 +1,24 @@
+package ioc;
+
+public class ProductMybatisDao implements ProductDao {
+
+	@Override
+	public void insertProduct() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getProduct() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateProduct() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+}

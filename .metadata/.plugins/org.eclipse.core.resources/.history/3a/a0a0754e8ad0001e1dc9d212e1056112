@@ -1,0 +1,5 @@
+package com.sapmle.vo;
+
+public class User {
+
+}

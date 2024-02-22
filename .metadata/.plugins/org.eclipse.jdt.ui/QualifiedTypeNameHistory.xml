@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="noncioc.UserJdvcDao"/>
+    <fullyQualifiedTypeName name="noncioc.UserMybatisDao"/>
+    <fullyQualifiedTypeName name="ioc.ProductJdbcDao"/>
+    <fullyQualifiedTypeName name="ioc.Container"/>
+    <fullyQualifiedTypeName name="ioc.ProductDao"/>
+    <fullyQualifiedTypeName name="ioc.ProductMybatisDao"/>
+    <fullyQualifiedTypeName name="ioc.ProductService"/>
+    <fullyQualifiedTypeName name="autowired.UserService"/>
+    <fullyQualifiedTypeName name="dependency.Cloud"/>
+    <fullyQualifiedTypeName name="autowired.UserDao"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Primary"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Qualifier"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="com.sample.dao.UserDao"/>
+    <fullyQualifiedTypeName name="java.lang.IllegalArgumentException"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.context.ApplicationContext"/>
+    <fullyQualifiedTypeName name="org.springframework.context.support.ClassPathXmlApplicationContext"/>
+    <fullyQualifiedTypeName name="com.sample.service.UserService"/>
+    <fullyQualifiedTypeName name="com.sapmle.vo.User"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Before"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.JoinPoint"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.Signature"/>
+    <fullyQualifiedTypeName name="java.util.StringJoiner"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Aspect"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.annotation.AfterThrowing"/>
+</qualifiedTypeNameHistroy>

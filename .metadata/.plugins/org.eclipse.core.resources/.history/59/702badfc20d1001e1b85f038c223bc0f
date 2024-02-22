@@ -1,0 +1,26 @@
+package com.sample.aop;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
+
+@Component
+@Aspect
+public class RunningTimeCheckAdvice {
+
+	public Object checkRunningTime(ProceedingJoinPoint joinPoint) throws Throwable {
+		// 대상 메소드 실행전 코드
+		StopWatch stopWatch = new StopWatch();
+		stopWatch.start();
+		
+		Object returnValue = joinPoint.proceed();	// 대상 메소드를 실행하고, 반환값을 받는다.(대상 메소드가 반환타압이 void면 null이 반환된다.)
+		
+		// 대상 메소드 실행후 코드 
+		stopWatch.stop();
+		long totalTimeMillis = stopWatch.getTotalTimeMillis();
+		System.out.println("실행시간 : " + totalTimeMillis + "밀리초");
+		
+		return returnValue;
+	}
+}

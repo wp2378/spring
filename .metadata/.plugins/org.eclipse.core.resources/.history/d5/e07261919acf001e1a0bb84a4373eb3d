@@ -1,0 +1,12 @@
+package noncioc;
+
+public class UserService {
+
+	public void 회원가입기능() {
+		
+	}
+	
+	public void 내정보조회기능() {
+		
+	}
+}
