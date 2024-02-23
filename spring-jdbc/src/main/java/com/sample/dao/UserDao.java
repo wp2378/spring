@@ -20,11 +20,13 @@ public class UserDao {
 	}
 	
 	public void deleteUser(String id) {
-		
+		String sql = "delete from sample_users where user_id = ?";
+		template.update(sql, id);
 	}
 	
 	public void updateUser(User user) {
-		
+		String sql = "update sample_users set user_password = ?, user_tel = ?, user_email = ? where user_id = ?";
+		template.update(sql, user.getPassword(), user.getTel(), user.getEmail(), user.getEmail(), user.getId());
 	}
 	
 	public List<User> getAllUser() {
@@ -32,6 +34,16 @@ public class UserDao {
 	}
 	
 	public User getUserById(String id) {
-		return null;
+		String sql = "select * from sample_users where user_id = ?";
+		return template.queryForObject(sql, (rs, rownum) -> {
+			User user = new User();
+			user.setId(rs.getString("user_id"));
+			user.setId(rs.getString("user_password"));
+			user.setId(rs.getString("user_name"));
+			user.setId(rs.getString("user_tel"));
+			user.setId(rs.getString("user_email"));
+			return user;
+		},id);
+		
 	}
 }

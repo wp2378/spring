@@ -15,6 +15,11 @@ public class App {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("context.xml");
 		
 		UserService userService = ctx.getBean(UserService.class);
-		userService.registerUser(new User("kang", "zxcv1234", "강감찬", "010-1111-1111", "kang@gmail.com"));
+		//userService.registerUser(new User("kang", "zxcv1234", "강감찬", "010-1111-1111", "kang@gmail.com"));
+	
+		//User user = userService.getUserDetail("hong");
+		//System.out.println(user.getId() + " , " + user.getName());
+		
+		userService.registerUser(new User("kong", "zxcv1234", "공감찬", "010-2222-2222", "kang@gamil.com"));
 	}
 }
