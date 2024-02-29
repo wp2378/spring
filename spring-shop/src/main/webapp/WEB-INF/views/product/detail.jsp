@@ -42,7 +42,9 @@
 						</tr>
 						<tr>
 							<th>판매가격</th>
-							<td colspan="3"><fmt:formatNumber value="${product.price }" />원</td>
+							<td><fmt:formatNumber value="${product.price }" />원</td>
+							<th>제조회사</th>
+							<td>${product.company.name }</td>
 						</tr>
 						<tr>
 							<th>설명</th>

@@ -1,11 +1,6 @@
 package com.sample.web.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.print.DocFlavor.STRING;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sample.service.CompanyService;
 import com.sample.service.ProductService;
+import com.sample.vo.Company;
 import com.sample.vo.Product;
 import com.sample.web.dto.Criteria;
 import com.sample.web.dto.ListDto;
@@ -46,6 +43,8 @@ public class ProductController {
 	 */
 	@Autowired
 	private ProductService producService;
+	@Autowired
+	private CompanyService companyService;
 	
 	/*
 	 * 요청URL
@@ -92,7 +91,10 @@ public class ProductController {
 	
 	
 	@GetMapping("/create")
-	public String form() {
+	public String form(Model model) {
+		// 전체 회사정보 조회하고, Model에 저장한다.
+		List<Company> companyList = companyService.gettAllCompanies();
+		model.addAttribute("companyList", companyList);
 		
 		return "product/form";			// /WEB-INF/views/product/form.jsp 로 내부이동
 	}
@@ -100,6 +102,13 @@ public class ProductController {
 	@PostMapping("/create")
 	public String create(ProductCreateForm productCreateForm) {
 		producService.createProduct(productCreateForm);
+		
+		return "redirect:list";
+	}
+	
+	@GetMapping("/delete")
+	public String delete(@RequestParam("no") List<Integer> noList) {
+		producService.deleteProducts(noList);
 		
 		return "redirect:list";
 	}

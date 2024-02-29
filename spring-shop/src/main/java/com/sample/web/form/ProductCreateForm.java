@@ -13,10 +13,11 @@ import lombok.ToString;
 @ToString
 public class ProductCreateForm {
 
+	private int companyNo;
 	private String name;
 	private int price;
 	private int stock;
-	private MultipartFile photofile;
+	private MultipartFile photofile;	// 첨부파일은 타입을 MultipartFile을 사용해서 받기
 	private String description;
 	
 	
