@@ -88,8 +88,6 @@ public class ProductController {
 	      return "product/list";    //"WEB-INF/views/product/list.jsp"로 내부이동
 	   }
 	
-	
-	
 	@GetMapping("/create")
 	public String form(Model model) {
 		// 전체 회사정보 조회하고, Model에 저장한다.
