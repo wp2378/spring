@@ -11,6 +11,7 @@ import com.sample.vo.Dept;
 import com.sample.vo.Employees;
 import com.sample.web.form.DeptCreateForm;
 import com.sample.web.form.EmpCreateForm;
+import com.sample.web.form.EmpModifyForm;
 
 @Service
 public class HrService {
@@ -66,5 +67,22 @@ public class HrService {
 		
 		empMapper.insertEmployees(emp);
 		
+	}
+	
+	public void ModifyEmp(EmpModifyForm empModifyform) {
+		Dept dept = Dept.builder()
+				.no(empModifyform.getDeptNo())
+				.build();
+		
+		Employees emp = Employees.builder()
+				.no(empModifyform.getNo())
+				.name(empModifyform.getName())
+				.tel(empModifyform.getTel())
+				.salary(empModifyform.getSalary())
+				.hireDate(empModifyform.getHireDate())
+				.dept(dept)
+				.build();
+		
+		empMapper.updatedemp(emp);
 	}
 }

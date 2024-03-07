@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.sample.vo.Dept;
+import com.sample.vo.Employees;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -34,6 +36,23 @@ public class EmpCreateForm {
 		this.salary = salary;
 		this.hireDate = hireDate;
 		this.deptNo = deptNo;
+		
+
+
+	}
+
+	public Employees toEmp() {
+		Employees emp = new Employees();
+		emp.setName(name);
+		emp.setTel(tel);
+		emp.setEmail(email);
+		emp.setSalary(salary);
+		emp.setHireDate(hireDate);
+		
+		Dept dept = new Dept();
+		dept.setNo(deptNo);
+		emp.setDept(dept);
+		return emp;
 	}
 	
 }

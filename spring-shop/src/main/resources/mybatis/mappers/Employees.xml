@@ -18,22 +18,23 @@
 	</select>
 	
 	<select id="getEmployeesByNo" parameterType="int" resultType="com.sample.vo.Employees">
-		select
-			emp_no				as no,
-			emp_name			as name,
-			emp_tel				as tel,
-			emp_email			as email,
-			emp_salary			as salary,
-			emp_hire_date		as hireDate,
-			dept_no				as "dept.no",
-			emp_created_date	as createdDate,
-			emp_updated_date	as updatedDate
-		from
-			shop_employees
-		where
-			emp_no = #{value}
-			
-	</select>
+      select
+         e.emp_no        		as no,
+         e.emp_name         	as name,
+         e.emp_tel         		as tel,
+         e.emp_email       		as email,
+         e.emp_salary      		as salary,
+         e.emp_hire_date      	as hireDate,
+         e.dept_no         		as "dept.no",
+         d.dept_name         	as "dept.name",
+         e.emp_created_date   	as createdDate,
+         e.emp_updated_date   	as updatedDate
+      from
+         shop_employees e, shop_depts d
+      where
+         e.dept_no = d.dept_no
+         and e.emp_no = #{no}
+   </select>
 	
 	<insert id="insertEmployees" parameterType="com.sample.vo.Employees">
 		insert into shop_employees

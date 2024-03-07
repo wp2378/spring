@@ -15,5 +15,7 @@ public interface EmpMapper {
 
 	void insertEmployees(Employees employees);
 
+	void updatedemp(Employees emp);
+
 	
 }

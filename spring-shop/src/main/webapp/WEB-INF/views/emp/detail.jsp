@@ -38,8 +38,8 @@
 						<tr>
 							<th>입사일</th>
 							<td><fmt:formatDate value="${employees.hireDate }" pattern="yyyy-MM-dd"/></td>
-							<th>소속부서번호</th>
-							<td>${employees.dept.no }</td>
+							<th>소속부서</th>
+							<td>${employees.dept.name }</td>
 						</tr>
 						<tr>
 							<th>등록일</th>
@@ -50,13 +50,12 @@
 					</table>
 					
 					<div class="text-end">
-						<a href="" class="btn btn-primary">수정</a>
+						<a href="modify?no=${employees.no }" class="btn btn-primary">수정</a>
 						<a href="" class="btn btn-danger">삭제</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </body>
 </html>

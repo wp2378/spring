@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sample.service.HrService;
+import com.sample.vo.Dept;
 import com.sample.vo.Employees;
 import com.sample.web.form.EmpCreateForm;
+import com.sample.web.form.EmpModifyForm;
 
 @Controller
 @RequestMapping("/emp")
@@ -47,6 +49,23 @@ public class EmpController {
 		hrService.createEmp(empCreateForm);
 		
 		return "redirect:list";
+	}
+	
+	@GetMapping("/modify")
+	public String modify(int no, Model model) {
+		Employees employees = hrService.getEmployeesByNo(no);
+		model.addAttribute("emp", employees);
+		List<Dept> deptList = hrService.getAllDepts();
+		model.addAttribute("deptList", deptList);
+		
+		return "emp/modify";
+	}
+	
+	@PostMapping("/modify")
+	public String empModify(EmpModifyForm empModifyform) {
+			hrService.ModifyEmp(empModifyform);
+		
+		return "redirect:detail?no=";
 	}
 	
 	
