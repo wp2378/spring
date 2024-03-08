@@ -7,6 +7,12 @@
          <li class="nav-item">
             <a class="nav-link" href="/">홈</a>
          </li>
+         <%--ROLE_ADMIN이란 권한을 가지고 있는 유저만 보임 --%>
+         <sec:authorize access="hasRole('ROLE_ADMIN')">
+	         <li class="nav-item">
+	            <a class="nav-link" href="/admin/home">관리자</a>
+	         </li>
+         </sec:authorize>
       </ul>
       
       
