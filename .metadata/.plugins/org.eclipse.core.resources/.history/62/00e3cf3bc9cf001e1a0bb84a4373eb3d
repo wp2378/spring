@@ -1,6 +1,0 @@
-package autowired;
-
-public class UserService {
-
-	private UserDao userDao;
-}
