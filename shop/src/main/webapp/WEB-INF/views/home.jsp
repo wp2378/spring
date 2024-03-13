@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="common/tags.jsp" %>
+<%@include file="common/tags.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,10 +21,11 @@
 	</div>
 	<div class="row mb-3">
 		<div class="col-3">
-			<%@ include file="common/category.jsp" %>
+			<%-- 화면에 자주 등장하는것 --%>
+			<%@include file="common/category.jsp" %>
 		</div>
 		<div class="col-9">
-			
+		
 		</div>
 	</div>
 </div>

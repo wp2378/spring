@@ -1,6 +1,6 @@
 # 웹 애플리케이션 서버의 포트번호를 지정한다.
 server:
- port: 80
+  port: 80
 
 # 로그출력레벨 설정하기
 # logging.level.root=info                     애플리케이션의 기본 로그출력 레벨을 설정한다.
@@ -11,6 +11,7 @@ logging:
   level:
     root: info
     '[org.springframework.web]': info
+    '[org.springframework.security]': info
     '[com.example.web]': info
     '[com.example.mapper]': trace
  
@@ -32,8 +33,8 @@ spring:
      
 # mybatis 연동정보를 설정한다.
 mybatis:
- mapper-locations: mybatis/mappers/*.xml
- configuration:
+  mapper-locations: mybatis/mappers/*.xml
+  configuration:
     jdbc-type-for-null: 'NULL'
     log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl 
     

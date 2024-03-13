@@ -9,14 +9,19 @@ import lombok.ToString;
 @ToString
 public class OrderForm {
 
-	// 1단계에서 입려되는 값
+	//1단계그대로 입력된값
 	private int productNo;
+	private String name;
+	private int price;
 	private int amount;
+	private int totalPrice;
+//	private String name;
+//	private int price;
+//	private int totalPrice;
 	
-	// 2단계에서 입력되는 값
+	//2단계 입력된값
 	private String payType;
 	private String cardno;
 	private int months;
 	private int payAmount;
-	
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/tags.jsp" %>
+<%@ include file="common/tags.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,12 +12,13 @@
 <title>bootstrap</title>
 </head>
 <body>
-<%@ include file="../common/navbar.jsp" %>
+<%@ include file="common/navbar.jsp" %>
 <div class="container">
 	<div class="row mb-3">
 		<div class="col-12">
-			<h1>내정보</h1>
+			<h1>회원가입완료</h1>
 			
+			<p>회원가입 정보를 확인하세요</p>
 			<table class="table">
 				<colgroup>
 					<col width="15%">
@@ -27,30 +28,25 @@
 				</colgroup>
 				<tbody>
 					<tr>
-						<th>아이디</th>
-						<td>${user.id }</td>
-						<th>사용자번호</th>
+						<th>사용자 번호</th>
 						<td>${user.no }</td>
+						<th>사용자 아이디</th>
+						<td>${user.id }</td>
 					</tr>
 					<tr>
-						<th>이메일</th>
+						<th>사용자 이메일</th>
 						<td>${user.email }</td>
-						<th>전화번호</th>
+						<th>사용자 전화번호</th>
 						<td>${user.tel }</td>
 					</tr>
 					<tr>
+						<th>보유 권한</th>
+						<td>${user.rolename }</td>
 						<th>가입일자</th>
-						<td><fmt:formatDate value="${user.createdDate }" pattern="yyyy-MM-dd" /></td>
-						<th>수정일자</th>
-						<td><fmt:formatDate value="${user.updatedDate }" pattern="yyyy-MM-dd" /></td>
-					</tr>
-					<tr>
-						<th>생년월일</th>
-						<td colspan="3"><fmt:formatDate value="${user.birth }" pattern="yyyy년 M월 d일" /></td>
+						<td colspan="3"><fmt:formatDate value="${user.createdDate }" pattern="yyyy-MM-dd"/> </td>
 					</tr>
 				</tbody>
 			</table>
-			
 		</div>
 	</div>
 </div>

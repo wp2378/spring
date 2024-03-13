@@ -9,10 +9,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor		// 매개변수 없는 생성자
-@AllArgsConstructor		// 매개변수 있는 생성자
+// 재정의
+@NoArgsConstructor
+// 매개변수초기화
+@AllArgsConstructor
+// 모든 매개변수초기화
 public class UserRole {
-
+	
 	private int userNo;
 	private String rolename;
+
 }

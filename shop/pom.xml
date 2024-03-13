@@ -65,10 +65,10 @@
 	         <artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
 		<!--JSTL 태그라이브러리 의존성을 추가한다. -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-		</dependency>
+	  <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>jstl</artifactId>
+      </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -80,17 +80,19 @@
 			<version>2.3.2</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
 		<!-- 
 			웹 애플리케이션에 대한 인증/인가 작업을 지원하는 스프링 시큐리티 라이브러리 의존성을 추가한다.
 		-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
+		<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<!-- 시큐리티 태그 라이브러리 추가-->
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-taglibs</artifactId>
-		</dependency>
+          <groupId>org.springframework.security</groupId>
+          <artifactId>spring-security-taglibs</artifactId>
+      </dependency>
+		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>

@@ -7,12 +7,12 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.vo.UserRole;
 
 @Mapper
+// @Mapper스캔기능
 public interface UserRoleMapper {
 
-	// 유저의 Role을 등록하는 기능
+	// 해당 유저의롤을 추가하는 기능
 	void insertUserRole(UserRole userRole);
-	// 유저의 Role를 삭제하는 기능
+	// 해당 유저의롤을 삭제하는 기능
 	void deleteUserRole(UserRole userRole);
-	// 유저의 Role를 가져오는기능
 	List<UserRole> getUserRolesByUserNo(int userNo);
 }

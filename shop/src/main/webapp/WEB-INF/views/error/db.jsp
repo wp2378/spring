@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true" %>
 <%--
-	<% page isErrorPage="true" %>
-		+ isErrorPage는 이 JSP 페이지를 에러 페이지로 지정하는 속성이다.
-		+ isErrorPage 속성의 기본값은  false다.
-		+ 에러 페이지로 사용되는 JSP는 isErrorPage 속성값을 true로 설정한다.
-		+ isErrorPage를 true로 설정하면 이 JSP의 내장객체에 exception 내장객체(컨트롤 + 스페이스바)가 추가된다.
-	   ++ 
+	isErrorPage = 기본값 false이다.
+	<%@ page isErrorPage="true"%>
+		+ isErrorPage는 이 JSP페이지를 에러 페이지로 지정하는 속성이다
+		+ 에러 페이지로 사용되는 JSP는 isErrorPage속성값을 TRUE로 설정한다.
+		+ isErrorPage를 true로 설정하면 이 JSP의 내장객체에 EXCEPTION 내장객체가 추가된다.
  --%>
+ <%
+ 	
+ %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,11 +21,11 @@
 <title>bootstrap</title>
 </head>
 <body>
-<%@ include file="../common/navbar.jsp" %>
+<%@include file="../common/navbar.jsp" %>
 <div class="container">
 	<div class="row mb-3">
-		<h1>오류 페이지</h1>
-		<p>데이터베이스 엑세스 작업 중 오류가 발생하였습니다.</p>
+		<h1>오류페이지</h1>
+		<p>데이터베이스 엑세스 작업 중 오류가 발생 하였습니다.</p>
 		<p>오류 메세지 : <%=exception.getMessage() %></p>
 	</div>
 </div>

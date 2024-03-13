@@ -14,7 +14,7 @@
 <%@ include file="../common/navbar.jsp" %>
 <div class="container">
 	<div class="row mb-3">
-		<div class="col-12">
+		<div class="col--12">
 			<h1>오류 페이지</h1>
 			<p>접근 권한이 없습니다.</p>
 		</div>

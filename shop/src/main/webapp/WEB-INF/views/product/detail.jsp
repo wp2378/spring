@@ -12,7 +12,7 @@
 <title>bootstrap</title>
 </head>
 <body>
-<%@ include file="../common/navbar.jsp" %>
+<%@include file="../common/navbar.jsp" %>
 <div class="container">
 	<div class="row mb-3">
 		<div class="col-12">
@@ -21,21 +21,21 @@
 	</div>
 	<div class="row mb-3">
 		<div class="col-3">
-			<%@ include file="../common/category.jsp" %>
+			<%@include file="../common/category.jsp" %>	
 		</div>
 		<div class="col-9">
 			<table class="table">
 				<colgroup>
-					<col width="15%">				
-					<col width="35%">				
-					<col width="15%">				
-					<col width="35%">				
+					<col width="15%">
+					<col width="35%">
+					<col width="15%">
+					<col width="35%">
 				</colgroup>
 				<tbody>
 					<tr>
 						<th>상품이름</th>
 						<td>${product.name }</td>
-						<th>번호</th>
+						<th>상품번호</th>
 						<td>${product.no }</td>
 					</tr>
 					<tr>
@@ -46,20 +46,20 @@
 					</tr>
 					<tr>
 						<th>가격</th>
-						<td><fmt:formatNumber value="${product.price }" />원</td>
+						<td><fmt:formatNumber value="${ product.price}"/>원</td>
 						<th>상태</th>
 						<td>${product.status }</td>
 					</tr>
 					<tr>
 						<th>수정일자</th>
-						<td><fmt:formatDate value="${product.updatedDate }" pattern="yyyy년 M월 d일"/></td>
+						<td><fmt:formatDate value="${product.updatedDate }" pattern="yyyy년 M월 d일" /></td>
 						<th>등록일자</th>
-						<td><fmt:formatDate value="${product.createdDate }" pattern="yyyy년 M월 d일"/></td>
+						<td><fmt:formatDate value="${product.createdDate }" pattern="yyyy년 M월 d일" /></td>
 					</tr>
 					<tr>
 						<th>설명</th>
 						<td colspan="3">${product.description }</td>
-					</tr>
+					</tr> 
 				</tbody>
 			</table>
 			

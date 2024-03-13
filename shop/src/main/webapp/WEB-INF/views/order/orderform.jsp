@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/tags.jsp" %>
+<%@include file="../common/tags.jsp" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,11 +12,11 @@
 <title>bootstrap</title>
 </head>
 <body>
-<%@ include file="../common/navbar.jsp" %>
+<%@include file="../common/navbar.jsp" %>
 <div class="container">
 	<div class="row mb-3">
 		<div class="col-12">
-			<h1>주문 - 1단계 (주문정보 입력)</h1>
+			<h1>주문  - 1단계 (주문정보 입력)</h1>
 		</div>
 	</div>
 	<div class="row mb-3">
@@ -25,14 +25,12 @@
 		</div>
 		<div class="col-9">
 			<form class="border bg-light p-3" method="post" action="step2">
-				<%-- 시큐리티 사용시 오류방지를 위한 태그 --%>
-				<sec:csrfInput/>
-				
-				
-				<input type="hidden" name="productNo" value="${product.no }" />
+			<%-- 1단계에 <sec:csrfInput/>있어야함(수정할 폼에 적어준다) 사이트 보안--%>
+			<sec:csrfInput/>
+				<input type="hidden" name="productNo" value="${product.no }"/>
 				<div class="form-group mb-3">
 					<label class="form-label">상품이름</label>
-					<input type="text" class="form-control" name="name" value="${product.name }" readonly="readonly" />
+					<input type="text" class="form-control" name="name" value="${product.name}" readonly="readonly" />
 				</div>
 				<div class="form-group mb-3">
 					<label class="form-label">상품가격</label>
@@ -40,11 +38,11 @@
 				</div>
 				<div class="form-group mb-3">
 					<label class="form-label">구매수량</label>
-					<input type="text" class="form-control" name="amount" value="1" />
+					<input type="text" class="form-control" name="amount" value="1"  />
 				</div>
 				<div class="form-group mb-3">
-					<label class="form-label">총 구매금액</label>
-					<input type="text" class="form-control" name="totalPrice" value="${product.price }" readonly="readonly" />
+					<label class="form-label">총 구매액수</label>
+					<input type="text" class="form-control" name="totalPrice" value="${product.price}" readonly="readonly" />
 				</div>
 				<div class="text-end">
 					<button type="submit" class="btn btn-primary">다음</button>

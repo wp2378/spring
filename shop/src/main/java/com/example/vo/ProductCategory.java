@@ -5,12 +5,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @ToString
 @NoArgsConstructor
 public class ProductCategory {
-
+	
 	private int no;
 	private String name;
+
 }

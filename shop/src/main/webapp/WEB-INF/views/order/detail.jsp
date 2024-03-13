@@ -16,14 +16,14 @@
 <div class="container">
 	<div class="row mb-3">
 		<div class="col-12">
-			<h1>주문 - 완료 (주문/결재 정보 확인)</h1>
+			<h1>주문 상세 정보</h1>
 		</div>
 	</div>
 	<div class="row mb-3">
 		<div class="col-3">
 		</div>
 		<div class="col-9">
-			<h3>주문정보</h3>
+			<h3>주문정보 - <small>${dto.description }</small></h3>
 			<div class="border p-3 mb-3">
 				<table class="table">
 					<colgroup>

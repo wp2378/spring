@@ -11,11 +11,11 @@
 <title>bootstrap</title>
 </head>
 <body>
-<%@ include file="../common/navbar.jsp" %>
+<%@include file="../common/navbar.jsp" %>
 <div class="container">
 	<div class="row mb-3">
 		<h1>오류페이지</h1>
-		<p>서버 실행 중 오류가 발생하였습니다.</p>
+		<p> 서버 실행 중 오류가 발생하였습니다.</p>
 	</div>
 </div>
 </body>
