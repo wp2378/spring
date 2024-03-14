@@ -10,7 +10,9 @@ import com.example.vo.Product;
 public interface ProductMapper {
 	
 	List<Product> getProductsByCategoryNo(int categoryNo);
+	List<Product> getAllproduct();
 	Product getProductByNo(int no);
+	void insertProduct(Product product);
 	
 
 }
