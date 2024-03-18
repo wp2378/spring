@@ -72,4 +72,9 @@ public class ProductService {
 		
 		return productMapper.getAllproduct();
 	}
+
+	public void updateProduct(Product product) {
+		productMapper.updateProduct(product);
+		
+	}
 }
