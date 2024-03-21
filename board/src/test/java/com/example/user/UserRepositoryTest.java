@@ -12,10 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import jakarta.transaction.Transactional;
 
 @SpringBootTest
-// 실행 후 다시 롤백 시켜줌 = 계속 테스트 할 수 있게 해줌
-// 1. 단위테스트는 테스트를 반복적으로 실행할수있음
-// 2. 테스트의 성공실패 여부를 빠르게 알수있음
-// 3. 스프링테스트와 연동해서 스프링기반의 어플리케이션을 쉽게 테스트 할수있다.
+// 실행 후 다시 롤백 시켜줌 = 계속 테스트 할수 있게 해줌
 @Transactional
 public class UserRepositoryTest {
 

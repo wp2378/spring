@@ -16,13 +16,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
 	
-	private final UserService userService;
+	private final UserService userService; //주입받으려고 
+	
+	@GetMapping("/login")
+	public String loginform() {
+		return "user/loginform";
+	}
 
 	@GetMapping("/signup")
 	public String form(Model model) {
 		// Model객체에 입력폼의 입력필드와 매핑되는 폼객체를 저장한다.
 		model.addAttribute("userSignupForm", new UserSignupForm());
-		return "register-form";
+		return "user/register-form";
 		
 	}
 	
@@ -32,30 +37,29 @@ public class UserController {
 	
 		// BindingResult객체에 오류가 있으면, 유효성 체크를 통과하지 못한 것임으로 회원가입폼으로 내부이동시킨다.
 		if(errors.hasErrors()) {
-			return "register-form";
+			return "user/register-form";
 		}
 		
 		try {
-			User user =userService.registerUser(form);
+			User user = userService.registerUser(form);
 			return "redirect:/user/completed?id=" + user.getId();
 			
-		} catch (RuntimeException ex) {
-			String message = ex.getMessage(); // "id" 혹은 "email" 중 하나다.
+		}catch (RuntimeException ex) {
+			String message = ex.getMessage(); // "id"혹은 email중 하나다.
 			if("id".equals(message)) {
-				errors.rejectValue("id", null, "사용할 수 없는 아이디입니다.");
-			} else if("email".equals(message)) {
-				errors.rejectValue("email", null, "사용할 수 없는 이메일입니다.");
+				errors.rejectValue("id", null, "사용할수 없는 아이디입니다.");
+			}else if("email".equals(message)){
+				errors.rejectValue("email", null, "사용할수 없는 이메일입니다.");
 			}
-			return "register-form";
-		}
-		
+			return "user/register-form";
+		}		
 	}
 
 	@GetMapping("/completed")
 	public String completed(Long id, Model model) {
 		User user = userService.getUser(id);
-		model.addAttribute("user", user);
+		model.addAttribute("user", user); // user를 조회하려고 
 	
-		return "completed";		// src/main/resources/templates/completed.html
+		return "user/completed";		// src/main/resources/templates/completed.html
 	}
 }

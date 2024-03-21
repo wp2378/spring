@@ -20,8 +20,8 @@ import lombok.Setter;
  * @EntityListeners
  * 		- JPA auditing을 적용할 엔티티 클래스에 이 어노테이션을 적용한다.
  * 		 * Auditing은 Spring Data JPA에서 제공하는 기능이다.
- * 		 * Auditing은 엔티티가 생성되고, 변경되는 시점을 감지하여 생성시각, 수정시각, 생성한 사람, 수정한 사람을 기록할 수 있다.
- * 		- 이 어노테이션은 엔티티의 변화를 감지하여 엔티티와 매핑된 테이블의 데이터를 조작할 이벤트 리스너를 등록시킨다.
+ * 		 * Auditing은 엔티티가 생성되고, 변경되는 시점을 감지하여 생성시각, 수정시각, 생성한 사람, 수정한 사람을 기록할수 있다.
+ * 		- 이 어노테이션은 인티티의 변화를 감지하여 엔티티와 매핑된 테이블의 데이터를 조작할 이벤트 리스너를 등록 시킨다.
  * 		- AuditingEntityListener 클래스는 Spring Data JPA에서 제공하는 이벤트 리스너 클래스다. 엔티티의 영속, 수정 이벤트를 감지한다.
  */
 
@@ -29,14 +29,13 @@ import lombok.Setter;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-// abstract 객체생성 불가능 선언
 public abstract class BaseDateTimeEntity {
+//jpa기능중하나로 date. update를 만들고 나머지에 상속이 될수 있도록 
 
-	@CreatedDate 	  // 생성될 때
-	@Column(updatable = false) // 해당 컬럼 수정불가 선언
-	private LocalDateTime createdDate;
+	@CreatedDate
+	@Column(updatable = false) // 수정못하도록 설정
+	private LocalDateTime createdDate; //생성할떄 날짜정보가 들어간다.
 	
-	@LastModifiedDate // 변경될 때
+	@LastModifiedDate
 	private LocalDateTime updatedDate;
-	
 }
