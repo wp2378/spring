@@ -105,6 +105,20 @@ public class PostController {
 		return String.format("redirect:/post/detail?id=%d", id);
 	}
 	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Long id, Principal principal) {
+		Post post = postService.getPostDetail(id);
+		if(!post.getUser().getUsername().equals(principal.getName())) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"수정할수 없다");
+		}
+		
+		postService.deletePost(post);
+		
+		return "redirect:/post/list";
+	}
+	
+	
 }
 
 

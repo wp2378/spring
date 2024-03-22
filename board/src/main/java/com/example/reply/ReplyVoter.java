@@ -1,5 +1,4 @@
-package com.example.post;
-
+package com.example.reply;
 
 import com.example.common.BaseDateTimeEntity;
 import com.example.user.User;
@@ -16,27 +15,28 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "board_post_voters")
+@Table(name = "board_post_reply_voters")
 @SequenceGenerator(
-	name = "voter_pk_generator",
-	sequenceName = "board_voters_seq",
-	initialValue = 1000,
+	name = "reply_voter_pk_generator",
+	sequenceName = "board_post_reply_voters_seq",
+	initialValue = 1,
 	allocationSize = 1
 )
 @Getter
 @Setter
-public class PostVoter extends BaseDateTimeEntity {
+public class ReplyVoter extends BaseDateTimeEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reply_voter_pk_generator")
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "post_id")
-	private Post post;
+	@JoinColumn(name = "reply_id")
+	private Reply reply;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
+	
 	
 }

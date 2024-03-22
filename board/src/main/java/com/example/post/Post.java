@@ -1,13 +1,16 @@
 package com.example.post;
 
+import java.util.List;
 import java.util.Set;
 
 import com.example.common.BaseDateTimeEntity;
+import com.example.reply.Reply;
 import com.example.user.User;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -54,6 +57,10 @@ public class Post extends BaseDateTimeEntity {
 	@Column(nullable = false)
 	private String content;	
 	
+	// fetch = FetchType.LAZY 지연로딩
+	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+	private List<Reply> replies;
+	
 	/*
 	 *	양방향 연관관계 매핑
 	 *		-양방향 연관관계 매핑은 두 객체가 서로 참조해야 하는 상황에서 정의하는 연관관계 매핑방식이다.
@@ -70,6 +77,6 @@ public class Post extends BaseDateTimeEntity {
 	 */
 	 
 	 // CascadeType.REMOVE 테이블 삭제시 같이 사라짐
-	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE) //mappedBy 연관관계의 주인이 누군지 알려주는 @어노테이션
+	@OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY) //mappedBy 연관관계의 주인이 누군지 알려주는 @어노테이션
 	private Set<PostVoter> postVoters;
 }
