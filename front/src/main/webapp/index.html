@@ -44,7 +44,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">Modal title</h5>
+				<h5 class="modal-title" id="modal-title-member">회원정보 입력폼</h5>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
@@ -70,7 +70,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-				<button type="button" class="btn btn-primary" onclick="creatMember()">등록</button>
+				<button type="button" class="btn btn-primary" onclick="creatMember()" id="btn-ok">등록</button>
 			</div>
 		</div>
 	</div>
@@ -79,9 +79,9 @@
 <script type="text/javascript">
 
 	// 선생님 pc
-	const url = "http://192.168.0.27/api/v1/members"
+	//const url = "http://192.168.0.27/api/v1/members"
 	// 내 pc
-	const url2 = "http://localhost/api/v1/members"
+	const url = "http://localhost/api/v1/members"
 	
 	// 회원목록 정보
 	let memberList = [];
@@ -143,7 +143,7 @@
 		// 		method : 요청방식을 지정한다.
 		//		headers : 요청메세지의 헤더부에 포함된 요청헤더정보를 지정한다.
 		// 		body : 요청메세지의 바디부에 포함되는 데이터를 지정한다. 예제에서는 json 텍스트 데이터가 지정된다.
-		let response = await fetch(url2, {
+		let response = await fetch(url, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"  // 요청메세지의 바디부에 포함되는 데이터의 컨텐츠 타입을 지정한다.
@@ -166,31 +166,49 @@
 		formModal.hide();
 	}
 	
-	// 신규 회원등록폼 모달을 화면에 표시하는 함수다.
-	async function showFormModal(memberId) {
+	// 회원정보를 삭제하는 기능이 구현된 함수다.
+	async function removeMember(memberId) {
 		// 확인하기 창을 표시한다. 확인을 클릭하면 answer에 true, 최소를 클릭하면 answer에 false값이 대입된다.
-		let answer = confirm("삭제할깝쇼?");	
+		// find메소드는 전달받는 함수가 ture를 반환하는 그 순간의 배열값을 변환한다.
+		// 아래 코드에서는 배열에 저장된 회원의 아이디와 삭제할 회원의 아이디가 일치할 때 그 순간의 회원정보를 반환한다.
+		let foundMember = memberList.find(member => member.id == memberId);
+		console.log(foundMember);
+		
+		let answer = confirm(foundMember.name + "님 회원정보를 삭제하겠습니까?");	
 		
 		if(answer) {
-			let response = await fetch(url2 + "/" + memberId, {
+			let response = await fetch(url + "/" + memberId, {
 				method: "DELETE"
 				
 			});
-			let jsonDate = await response.json();
+			let jsonData = await response.json();
 			// jsonData <--- {status: 200, message:"삭제가 완료되었습니다", items:[]}
-			if (jsonDate != 200) {
-				alert("회원정보 삭제에 실패했습니다.")
+			if (jsonData.status == 200) {
+				alert(jsonData.message);
+				
+				/*
+				let index = memberList.map(function(member) {
+					return member.id
+				}).indexOf(memberId);
+				*/
+				
+				// 매개변수가 단 "1개"일때는 function부분을 생략할수 있다.
+				let index = memberList.map(member => member.id).indexOf(memberId);
+				
+				memberList.splice(index, 1);
+				refreshMemberList()
+				
 				return;
 			}
-			
-			
 		}
 	}
+	
+	
 	
 	// 전체 회원정보를 조회하는 함수
 	async function getMembers() {
 		// 회원목록 정보를 제공하는 REST api를 요청한다.
-		let response = await fetch(url2);
+		let response = await fetch(url);
 		// 응답을 표현하는 객체에서 json 데이터를 조회한다. 조회된 데이터는 json형식의 텍스트를 자바스크립트 객체난 배열로 변환한 것이다.
 		let jsonData = await response.json();
 		// jsonData <--- {status:200, message:"OK", items:[{id:1, email:"hong@email.com", ...}, {}]}
@@ -205,9 +223,56 @@
 		refreshMemberList();
 	}
 	
-	// 회원정보를 삭제하는 기능이 구현된 함수다.
-	function removeMember(memberId) {
-		alert(memberId);
+	// 신규,수정용 회원등록폼을 호출하는 함수
+	// 신규 -> showFormModal();
+	// 수정 -> showFormModal(10);
+	function showFormModal(memberId) {
+		if (memberId) {  // memberId가 undifined일 대 true가 된다.
+			
+			document.querySelector("#modal-title-member").textContent = "회원정보 수정화면"
+			
+			
+			// 수정하기 위해서 모달창을 연 경우
+			let foundMember = memberList.find(m => m.id == memberId);
+		
+			document.querySelector('input[name=email]').value = foundMember.email;
+			document.querySelector('input[name=name]').value = foundMember.name;
+			document.querySelector('input[name=tel]').value = foundMember.tel;
+	
+			document.querySelector('#btn-ok').setAttribute("onclick", "updateMember("+memberId+")")
+		} else {
+			document.querySelector("#modal-title-member").textContent = "회원정보 등록화면"
+			document.querySelector('#btn-ok').setAttribute("onclick", "creatMember()")
+		}
+		formModal.show(memberId);	
+	}
+	
+	async function updateMember(memberId) {
+		let data = {
+				email: document.querySelector("input[name=email]").value,
+				password: document.querySelector("input[name=password]").value,
+				name: document.querySelector("input[name=name]").value,
+				tel: document.querySelector("input[name=tel]").value
+		}
+		
+		let response = await fetch(url + "/" + memberId, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data)
+		});
+		let jsonData = await response.json();
+		// jsonData -> {status:200, message:"OK", items:[{id:20, email:"hong@gmail.com", password:"1234", name:"홍길동",...}]}
+		if (jsonData.status == 200) {
+			// 수정된 회원정보를 가져온다.
+			let updatedMember = jsonData.items[0];
+			let index = memberList.findIndex(m => m.id == updatedMember.id)
+			memberList.splice(index, 1, updatedMember);
+			refreshMemberList();
+			
+		}
+			formModal.hide();
 	}
 	
 	function refreshMemberList() {
@@ -216,6 +281,43 @@
 			return;
 		}
 		
+		let rows = memberList.map((member, index)=> 
+			`
+				<tr>
+					<td>${index + 1}</td>
+					<td>${member.id}</td>
+					<td>${member.email}</td>
+					<td>${member.name}</td>
+					<td>
+						<button class="btn btn-outline-danger btn-sm" onclick="removeMember(${member.id})">삭제</button>
+						<button class="btn btn-outline-warning btn-sm" onclick="showFormModal(${member.id})">수정</button>
+					</td>
+				</tr>
+			`
+		).join("");
+		tbody.innerHTML = rows;
+		
+		// 방법 3
+		/*
+		let rows = memberList.map(function(member, index) {
+			return `
+			<tr>
+				<td>${index + 1}</td>
+				<td>${member.id}</td>
+				<td>${member.email}</td>
+				<td>${member.name}</td>
+				<td>
+					<button class="btn btn-outline-danger btn-sm" onclick="removeMember(${member.id})">삭제</button>
+					<button class="btn btn-outline-warning btn-sm" onclick="showFormModal(${member.id})">수정</button>
+				</td>
+			</tr>
+			`
+		}).join("");
+		tbody.innerHTML = rows;
+		*/
+		
+		// 방법2
+		/*
 		let rows = "";
 		memberList.forEach(function(member, index) {
 			rows += `
@@ -231,7 +333,9 @@
 				</tr>
 			`;
 		});
+		*/
 		
+		// 방법 1
 		/*
 		let rows = "";
 		for (let index = 0; index < memberList.length; index++) {
