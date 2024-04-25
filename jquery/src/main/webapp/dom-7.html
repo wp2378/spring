@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>HTML DOM</h1>
+	
+	<table border="1" style="width: 100%;">
+		<thead>
+			<tr>
+				<th>순번</th><th>이름</th><th>국어점수</th><th>영어점수</th><th>수학점수</th><th>총점</th><th>평균</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>10</td><td>홍길동</td><td class="score">100</td><td class="score">90</td><td class="score">90</td><td></td><td></td>
+			</tr>
+			<tr>
+				<td>11</td><td>김유신</td><td class="score">80</td><td class="score">90</td><td class="score">80</td><td></td><td></td>
+			</tr>
+			<tr>
+				<td>12</td><td>이순신</td><td class="score">30</td><td class="score">60</td><td class="score">90</td><td></td><td></td>
+			</tr>
+			<tr>
+				<td>13</td><td>강감찬</td><td class="score">60</td><td class="score">70</td><td class="score">60</td><td></td><td></td>
+			</tr>
+			<tr>
+				<td>14</td><td>유관순</td><td class="score">80</td><td class="score">40</td><td class="score">60</td><td></td><td></td>
+			</tr>
+		</tbody>
+	</table>
+	
+<script src="resources/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	
+	/*
+		.end()는 맨 마지막 필터메소드 실행전 상태로 jQuery집합객체의 상태를 되돌리는 메소드다.
+		아래 예시에서 $("table").필터메소드1().조직메소드1()
+							.end()
+							.필터메소드2().조직메소드2
+		#("table") 선택자함수로 선택된 엘리먼트를 기준으로 필터메소드1()을 실행해서 엘리먼트를 선택하고, 조직메소드1()실행한 다음
+		end() 메소드를 호출해서 필터메소드1() 실행전 상태로 되돌린다음
+		다시 $("table") 선택자함수로 선택된 엘리먼트를 기준으로 필터메소드2()을 실행해서 엘리먼트를 선택하고, 조직메소드2()를 실행했다.
+	*/
+	$("table").find("thead").css("background-color", "lightgreen")
+			  .end()
+			  .find("tbody").css("background-color", "#eee")
+	
+	// 국어, 영어, 수학점수가 있는 td를 전부 찬기
+	// $(선택자).filter(콜백함수)는 선택자1로 선택된 엘리먼트마다 콜백함수를 호출해서 콜백함수가 ture를 반환하는 것만 최종적으로 선택한다. 
+	// filter() 메소드의 콜백함수가 true를 반환하는 엘리먼트만 선택하기
+	$("tbody td.score").filter(function() {
+		// 콜백함수 내부의 this에는 td.score로 선택된 엘리먼트가 차례로 하나씩 전달된다.
+		let score = parseInt($(this).text());
+		return score <= 40;
+	}).css("background-color", "yellow")
+})
+</script>
+</body>
+</html>
